@@ -4,7 +4,7 @@ import { auth } from '../firebase.config';
 import { useAuthStatus } from '../onAuthStatus';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase.config';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, setDoc, doc } from 'firebase/firestore';
 
 function CreateUser() {
   const [dataForm, setDataForm] = useState({
@@ -34,25 +34,17 @@ function CreateUser() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        return user.uid;
+      })
+      .then((user) => {
+        setDoc(doc(db, 'users', user), dataForm);
         navigate('/');
-        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
       });
-
-    const addData = async () => {
-      try {
-        const docRef = await addDoc(collection(db, 'users'), dataForm);
-        console.log('Document written with ID: ', docRef.id);
-      } catch (e) {
-        console.error('Error adding document: ', e);
-      }
-    };
-
-    addData();
   };
 
   return (

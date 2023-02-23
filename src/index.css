@@ -27,6 +27,8 @@ a:hover {
   font-weight: bold;
 }
 
+/*CONTAINERS*/
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -36,6 +38,19 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid lightgray;
+  border-radius: var(--border-radius);
 }
 
 /*MENU*/
@@ -109,4 +124,22 @@ a:hover {
 
 .login_text {
   text-align: center;
+}
+
+/*MAIN*/
+
+.main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.main1 {
+  width: 100%;
+  height: 200px;
+}
+
+.main_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
