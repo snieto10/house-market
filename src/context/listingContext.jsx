@@ -14,6 +14,7 @@ export const ListingContext = createContext();
 
 export const ListingDataProvider = ({ children }) => {
   const [listing, setListing] = useState([]);
+  const [allListings, setAllListings] = useState([]);
 
   const { loggedIn, loading } = useAuthStatus();
 
@@ -28,13 +29,24 @@ export const ListingDataProvider = ({ children }) => {
         array.push(doc.data());
       });
       setListing(array);
+      setAllListings(array);
     };
 
     getData();
   }, []);
 
+  const changeCity = (city) => {
+    if (city === 'allcities') {
+      setListing(allListings);
+      return;
+    }
+    const array = [...allListings];
+    const filtered = array.filter((item) => item.city === city);
+    setListing(filtered);
+  };
+
   return (
-    <ListingContext.Provider value={{ listing }}>
+    <ListingContext.Provider value={{ listing, changeCity }}>
       {children}
     </ListingContext.Provider>
   );

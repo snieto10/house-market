@@ -12,12 +12,15 @@ function ListingSummary({ listing }) {
       {' '}
       {listing.map((item) => (
         <div key={item.address} className='container listingSummary'>
-          <div className='listingSummary_img'>A</div>
+          <div className='listingSummary_img'>
+            <img src={item.images[0]} className='listingSummary_img' alt='' />
+          </div>
+
           <div className='listingSummary_text'>
             <div>{item.community}</div>
             <div>{`Bedrooms: ${item.bedroom}`}</div>
             <div>{`Address: ${item.address}`}</div>
-            <div>{`Bathrooms: ${item.bathroom}`}</div>
+            <div>{`City: ${item.city}`}</div>
             <div>{`Price: $${item.price}`}</div>
             <div>{`By: ${item.userName}`}</div>
           </div>
