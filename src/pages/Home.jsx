@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import image1 from '../assets/images/picture1.jpg';
 import image2 from '../assets/images/picture2.jpg';
 import Filter from './../components/Filter';
+import ListingSummary from '../components/ListingSummary';
 
 function Home() {
   const { user } = useContext(UserContext);
@@ -36,6 +37,7 @@ function Home() {
         <h2>TOP LISTINGS</h2>
       </div>
       <Filter />
+      <ListingSummary listing={listing} />
     </>
   );
 }
